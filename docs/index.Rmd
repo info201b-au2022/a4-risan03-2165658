@@ -1,5 +1,5 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
+title: "Fight for Human Dignity"
 author: "Risa Nabari"
 date: '2022-11-19'
 output: html_document
@@ -40,8 +40,18 @@ This report uses the incarceration data set, and the key goal of this data set i
 ********“Black men comprise about 13% of the population, but 35% of the incarcerated”?**************************************
 
 
-
 ## Data Summary 
+In order to look at the inequalities associated with people who have been incarcerated and who are in jail, we will be looking at the jailed population by race and compare it with the population of each race to find the ratio. This will allow us to compare between each race and discuss if we are able to see a evidence of inequality. 
+
+First, I have extracted the population by race who are jailed and the total mean population.
+
+Here are the result:
+  
+What is the average value of the jailed population of black or African American from age 15 to 64?
+What are the average value of the jailed population of white from age 15 to 64?
+What are the average value of the jailed population of latino from age 15 to 64?
+
+
 [TODO]
 
 [TODO ... other sections ... See Canvas for details]
