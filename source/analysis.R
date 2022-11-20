@@ -1,4 +1,16 @@
-library(tidyverse)
+library("tidyverse")
+library("dplyr")
+library("ggplot2")
+library("plotly")
+
+get_data <- function(num_records=-1) {
+  fname <- "~/Documents/info201/data/incarceration_trends.csv"
+  df <- read.csv(fname, nrows=num_records)
+  return(df)
+}
+
+incarceration_df <- get_data()
+
 
 # The functions might be useful for A4
 source("../source/a4-helpers.R")
