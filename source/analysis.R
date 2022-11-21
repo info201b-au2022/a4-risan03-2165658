@@ -1,4 +1,4 @@
-fname <- read.csv(file = "~/Documents/info201/data/incarceration_trends.csv")
+fname <- read.csv(url("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv"))
 
 library("tidyverse")
 library("dplyr")
@@ -126,8 +126,6 @@ plot_jail_pop_by_states <- function(state){
 }
 
 
-----
-  
  # selected_states <-data.frame(
 #    state = c("WA", "OR", "CA")
 #  )
@@ -151,20 +149,19 @@ plot_jail_pop_by_states <- function(state){
 
 ## Section 5  ---- 
 #----------------------------------------------------------------------------#
-fname_section_five <- fname %>%
+sub_fname_five <- fname %>%
   select(year, state, female_adult_jail_pop, male_adult_jail_pop) %>%
   group_by(state) %>%
   filter(year == 2018)
 
-fname_section_five[is.na(fname_section_five)] <- 0 
+#sub_fname_five[is.na(sub_fname_five] <- 0 
 
 section_five_graph <- function(state){
-  ggplot(data = fname_section_five) +
+  ggplot(data = sub_fname_five) +
   geom_point(
     mapping = aes(x = female_adult_jail_pop, y = male_adult_jail_pop)) + 
   ggtitle( "Variable Comparison of Jailed Population by Gender (in 2018 by States)") +  
   labs(y = "Male Jailed Population", x = "Women Jailed Population")
-return(graph_jail)   
 }
 #----------------------------------------------------------------------------#
 
@@ -184,7 +181,7 @@ blank_theme <- theme_bw() +
   )
 
 get_black_jail_map <- fname %>%
-  select(state, year, black_jail_pop, total_pop)%>%
+  select(state, year, black_jail_pop, total_pop) %>%
   filter(year == 2018) %>% # keep only 2018 data
   group_by(state) %>%
   mutate(black_ratio = (black_jail_pop / total_pop))
@@ -194,11 +191,10 @@ get_black_jail_map$state <- state.name[match(get_black_jail_map$state, state.abb
 # Join eviction data to the U.S. shapefile
 state_shape <- map_data("state") %>% # load state shapefile
   rename(state = region) %>% # rename for joining
-  left_join(get_black_jail_map, by="state") # join eviction data
+  left_join(get_black_jail_map, by = "state") # join eviction data
 
 map_one <- ggplot(state_shape) +
-  geom_polygon(
-    mapping = aes(x = long, y = lat, group = group, fill = black_ratio),
+  geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = black_ratio),
     color = "white", # show state outlines
     size = .1        # thinly stroked
   ) +
