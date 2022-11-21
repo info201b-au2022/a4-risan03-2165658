@@ -84,7 +84,6 @@ overall$ratio_white_2018 <- pull(ratio_pop_to_jail_2018, ratio_white)
 ## Section 3  ---- 
 #----------------------------------------------------------------------------#
 # Growth of the U.S. Prison Population
-# Your functions might go here ... <todo:  update comment>
 
 # This function ... <todo:  update comment>
 get_year_jail_pop <- function() {
@@ -155,6 +154,24 @@ Summary paragraph. Include a brief paragraph (50 words or more) that summarizes 
 # <variable comparison that reveals potential patterns of inequality>
 # Your functions might go here ... <todo:  update comment>
 # See Canvas
+
+fname_section_five <- fname %>%
+  select(year, state, female_adult_jail_pop, male_adult_jail_pop) %>%
+  group_by(state) %>%
+  filter(year == 2018)
+
+fname_section_five[is.na(fname_section_five)] <- 0 
+
+
+section_five_graph <- function(state){}
+  ggplot(data = fname_section_five) +
+  geom_point(
+    mapping = aes(x = female_adult_jail_pop, y = male_adult_jail_pop)) + 
+  ggtitle( "Variable Comparison of Jailed Population by Gender (in 2018 by States)") +  
+  labs(y = "Male Jailed Population", x = "Women Jailed Population")
+return(graph_jail)   
+}
+
 #----------------------------------------------------------------------------#
 
 ## Section 6  ---- 
@@ -162,6 +179,13 @@ Summary paragraph. Include a brief paragraph (50 words or more) that summarizes 
 # <a map shows potential patterns of inequality that vary geographically>
 # Your functions might go here ... <todo:  update comment>
 # See Canvas
+
+Section 6: <a map shows potential patterns of inequality that vary geographically>
+  In this section, your goal is to produce a map that reveals a potential inequality. Specifically, the map should show show show how a variable is distributed geographically.  Again, think carefully about how a "geographic comparison" (e.g., counties in a state, counties in division, or counties in across regions) might reveal an inequality. Your first step should be to find potential trends in the dataset.  Recommendation: See reading on maps and (1)  Use a map based coordinate system to set the aspect ratio of your map; and (2) Use a minimalist theme for the map (see reading). 
+
+Structuring your code. As in the previous sections, you should write two functions (or more, if useful), one for data wrangling and one for plotting.
+
+
 #----------------------------------------------------------------------------#
 
 ## Load data frame ---- 
