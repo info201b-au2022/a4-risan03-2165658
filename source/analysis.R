@@ -162,7 +162,6 @@ fname_section_five <- fname %>%
 
 fname_section_five[is.na(fname_section_five)] <- 0 
 
-
 section_five_graph <- function(state){}
   ggplot(data = fname_section_five) +
   geom_point(
@@ -176,12 +175,54 @@ return(graph_jail)
 
 ## Section 6  ---- 
 #----------------------------------------------------------------------------#
-# <a map shows potential patterns of inequality that vary geographically>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
+# Defining a minimalist theme for maps
+blank_theme <- theme_bw() +
+  theme(
+    axis.line = element_blank(),        # remove axis lines
+    axis.text = element_blank(),        # remove axis labels
+    axis.ticks = element_blank(),       # remove axis ticks
+    axis.title = element_blank(),       # remove axis titles
+    plot.background = element_blank(),  # remove gray background
+    panel.grid.major = element_blank(), # remove major grid lines
+    panel.grid.minor = element_blank(), # remove minor grid lines
+    panel.border = element_blank()      # remove border around plot
+  )
+
+get_black_jail_map <- fname %>%
+  select(state, year, black_jail_pop, total_pop)%>%
+  filter(year == 2018) %>%
+  group_by(state) %>%
+  mutate(black_ratio = black_jail_pop / total_pop)
+         
+get_black_jail_map$state <- state.name[match(get_black_jail_map$state, state.abb)]
+
+state_shape <- map_data("state") %>%
+  rename(state = region) %>%
+  left_join(get_black_jail_map, by ="state")
+
+map_one <- ggplot(state_shape) +
+  geom_polygon(mapping = aes(x = long, y = lat, group = group, 
+                             fill = black_ratio, size = .1, alpha = .3)
+               ) +
+  scale_fill_gradient2(
+    "# of Black jailed population",
+    low = "white",
+    mid = "yellow",
+    high = "red"
+  ) +
+  labs(title="Jailed Black Population in the United States, 2018") +
+  theme(plot.margin = margin(.3, 0, 0, 0, "cm")) +
+  blank_theme
+
+---
+  
 
 Section 6: <a map shows potential patterns of inequality that vary geographically>
-  In this section, your goal is to produce a map that reveals a potential inequality. Specifically, the map should show show show how a variable is distributed geographically.  Again, think carefully about how a "geographic comparison" (e.g., counties in a state, counties in division, or counties in across regions) might reveal an inequality. Your first step should be to find potential trends in the dataset.  Recommendation: See reading on maps and (1)  Use a map based coordinate system to set the aspect ratio of your map; and (2) Use a minimalist theme for the map (see reading). 
+  In this section, your goal is to produce a map that reveals a potential inequality.
+Specifically, the map should show show show how a variable is distributed geographically. 
+Again, think carefully about how a "geographic comparison" (e.g., counties in a state, counties in division, or counties in across regions) might reveal an inequality. 
+Your first step should be to find potential trends in the dataset.  Recommendation: See reading on maps and (1)  Use a map based coordinate system to set the aspect ratio of your map; 
+and (2) Use a minimalist theme for the map (see reading). 
 
 Structuring your code. As in the previous sections, you should write two functions (or more, if useful), one for data wrangling and one for plotting.
 
