@@ -1,6 +1,6 @@
 fname <- read.csv(file = "~/Documents/info201/data/incarceration_trends.csv")
 
-Viewlibrary("tidyverse")
+library("tidyverse")
 library("dplyr")
 library("ggplot2")
 
@@ -128,21 +128,21 @@ plot_jail_pop_by_states <- function(state){
 
 ----
   
-  selected_states <-data.frame(
-    state = c("WA", "OR", "CA")
-  )
+ # selected_states <-data.frame(
+#    state = c("WA", "OR", "CA")
+#  )
 
   
-  This data wrangling function should return a data frame that is suitable for visualization. The parameter states should be a vector of states.
-plot_jail_pop_by_states(states)
+ # This data wrangling function should return a data frame that is suitable for visualization. The parameter states should be a vector of states.
+#plot_jail_pop_by_states(states)
 
-: This plotting function should return the chart. The parameter states should be a vector of states. This function should call the data wrangling function.
-If plot_jail_pop_by_states(c("WA", "OR", "CA")) is called it will produce a line chart with three lines, one for each of the states.  Show more than three states but fewer than 10 states.  
+#: This plotting function should return the chart. The parameter states should be a vector of states. This function should call the data wrangling function.
+#If plot_jail_pop_by_states(c("WA", "OR", "CA")) is called it will produce a line chart with three lines, one for each of the states.  Show more than three states but fewer than 10 states.  
 
-For the report, include the following in this section: 
+#For the report, include the following in this section: 
   
-Chart caption. Include a caption that names and briefly describes the chart.
-Summary paragraph. Include a brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart. Explain the reason for the states that you show.
+#Chart caption. Include a caption that names and briefly describes the chart.
+#Summary paragraph. Include a brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart. Explain the reason for the states that you show.
 
 # This is  a line chart that shows the growth of the U.S. prison population from 1970 to 2018 in Washington, California, and Oregon. 
 #I chose these states as they are west coast where I live in. We can see how ....
@@ -151,10 +151,6 @@ Summary paragraph. Include a brief paragraph (50 words or more) that summarizes 
 
 ## Section 5  ---- 
 #----------------------------------------------------------------------------#
-# <variable comparison that reveals potential patterns of inequality>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
-
 fname_section_five <- fname %>%
   select(year, state, female_adult_jail_pop, male_adult_jail_pop) %>%
   group_by(state) %>%
@@ -162,7 +158,7 @@ fname_section_five <- fname %>%
 
 fname_section_five[is.na(fname_section_five)] <- 0 
 
-section_five_graph <- function(state){}
+section_five_graph <- function(state){
   ggplot(data = fname_section_five) +
   geom_point(
     mapping = aes(x = female_adult_jail_pop, y = male_adult_jail_pop)) + 
@@ -170,7 +166,6 @@ section_five_graph <- function(state){}
   labs(y = "Male Jailed Population", x = "Women Jailed Population")
 return(graph_jail)   
 }
-
 #----------------------------------------------------------------------------#
 
 ## Section 6  ---- 
@@ -211,39 +206,10 @@ map_one <- ggplot(state_shape) +
   scale_fill_continuous(low = "#132B43", high = "Red") +
   labs(fill = "Jailed Black Population in the United States, 2018") +
   blank_theme # variable containing map styles (defined in next code snippet)
-
-
----
   
-  # Load evictions data
-  evictions <- read.csv("data/states.csv", stringsAsFactors = FALSE) %>%
-  filter(year == 2016) %>% # keep only 2016 data
-  mutate(state = tolower(state)) # replace with lowercase for joining
-
-# Draw the map setting the `fill` of each state using its eviction rate
-ggplot(state_shape) +
-  geom_polygon(
-    mapping = aes(x = long, y = lat, group = group, fill = eviction.rate),
-    color = "white", # show state outlines
-    size = .1        # thinly stroked
-  ) +
-  coord_map() + # use a map-based coordinate system
-  scale_fill_continuous(low = "#132B43", high = "Red") +
-  labs(fill = "Eviction Rate") +
-  blank_theme # variable containing map styles (defined in next code snippet)
-
-Section 6: <a map shows potential patterns of inequality that vary geographically>
-  In this section, your goal is to produce a map that reveals a potential inequality.
-Specifically, the map should show show show how a variable is distributed geographically. 
-Again, think carefully about how a "geographic comparison" (e.g., counties in a state, counties in division, or counties in across regions) might reveal an inequality. 
-Your first step should be to find potential trends in the dataset.  Recommendation: See reading on maps and (1)  Use a map based coordinate system to set the aspect ratio of your map; 
-and (2) Use a minimalist theme for the map (see reading). 
-
-Structuring your code. As in the previous sections, you should write two functions (or more, if useful), one for data wrangling and one for plotting.
-
-
-#----------------------------------------------------------------------------#
-
-## Load data frame ---- 
-
-
+#Section 6: <a map shows potential patterns of inequality that vary geographically>
+ # In this section, your goal is to produce a map that reveals a potential inequality.
+#Specifically, the map should show show show how a variable is distributed geographically. 
+#Again, think carefully about how a "geographic comparison" (e.g., counties in a state, counties in division, or counties in across regions) might reveal an inequality. 
+#Your first step should be to find potential trends in the dataset.  Recommendation: See reading on maps and (1)  Use a map based coordinate system to set the aspect ratio of your map; 
+#and (2) Use a minimalist theme for the map (see reading). 
