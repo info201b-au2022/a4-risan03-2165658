@@ -41,16 +41,27 @@ print(sum)
 
 
 ## Data Summary 
-In order to look at the inequalities associated with people who have been incarcerated and who are in jail, we will be looking at the jailed population by race and compare it with the population of each race to find the ratio. This will allow us to compare between each race and discuss if we are able to see a evidence of inequality. 
+In order to look at the inequalities associated with people who have been incarcerated and who are in jail, we will be looking at the jailed population by race and compare it with the population of each race to find the ratio. This will allow us to compare between each race and discuss if we are able to see a evidence of inequality. I have used the data from 2018 as having the most recent year would be the most relevant. 
+The answers I will be answers is :
+What is the average value of the jailed population of Asian American  age 15 to 64?
+What is the average value of the jailed population of Black from age 15 to 64?
+What is the average value of the jailed population of African American from age 15 to 64?
+What are the average value of the jailed population of White from age 15 to 64?
+What are the average value of the jailed population of Latinx from age 15 to 64?
 
 First, I have extracted the population by race who are jailed and the total mean population.
 
 Here are the result:
-  
-  
-What is the average value of the jailed population of black or African American from age 15 to 64?
-What are the average value of the jailed population of white from age 15 to 64?
-What are the average value of the jailed population of latino from age 15 to 64?
+
+American Asian Pacific Islander : `r overall$ratio_aapi_2018`
+Black : `overall$ratio_black_2018`
+Latinx :`overall$ratio_latinx_2018`
+Native Americans : `overall$ratio_native_2018`
+White : `overall$ratio_white_2018`
+
+(To get this result, I have selected the relevant columns, then found the mean jail population by filterting 
+in year 2018. Then, found the ratio by dividing mean jail population of the certain race to the mean population from 15 to 64) 
+
 
 ``` {r Graph 1, echo = FLASE, fig.cap = "caption"} 
 plot_jail_pop_for_us()
