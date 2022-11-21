@@ -43,7 +43,7 @@ print(sum)
 ## Data Summary 
 In order to look at the inequalities associated with people who have been incarcerated and who are in jail, we will be looking at the jailed population by race and compare it with the population of each race to find the ratio. This will allow us to compare between each race and discuss if we are able to see a evidence of inequality. I have used the data from 2018 as having the most recent year would be the most relevant. 
 The answers I will be answers is :
-What is the average value of the jailed population of Asian American  age 15 to 64?
+What is the average value of the jailed population of Asian Americanage 15 to 64?
 What is the average value of the jailed population of Black from age 15 to 64?
 What is the average value of the jailed population of African American from age 15 to 64?
 What are the average value of the jailed population of White from age 15 to 64?
@@ -62,22 +62,55 @@ White : `overall$ratio_white_2018`
 (To get this result, I have selected the relevant columns, then found the mean jail population by filterting 
 in year 2018. Then, found the ratio by dividing mean jail population of the certain race to the mean population from 15 to 64) 
 
-
+##Section 3 : Growth of the U.S. Prison Population
 ``` {r Graph 1, echo = FLASE, fig.cap = "caption"} 
 plot_jail_pop_for_us()
 ```
 
-
+##Section 4 : Jail Population by States
 ``` {r Graph 2, echo = FLASE, fig.cap = "caption"} 
 plot_jail_pop_by_states()
 ```
-
-``` {r Graph 3, echo = FLASE, fig.cap = "caption"} 
-plot_jail_pop_by_states()
+##Section 5: Variable Comparison
+``` {r Graph e, echo = FLASE, fig.cap = "caption"} 
+section_five_graph()
 ```
-[TODO]
 
-[TODO ... other sections ... See Canvas for details]
+Here, we will be having a variable comparison that reveals potential patterns of inequality. 
+In section 2, we have revealed the ratio of the mean jailed population to the population of 
+various race specific to 2018. We have learned that...
+
+Now, is there a difference between women and men? Which gender may be potentially 
+more vulnerable to getting incarceranated in certain states?
+
+
+
+In section 5, we will be looking at the trend of the ration of jailed 
+population over time. We will be answering: Are the jailed population of the races increaseing or decreasing?
+Does help to support the claim of inequality, or does it not? 
+--
+##Section 6: 
+``` {r Graph 4, echo = FLASE, fig.cap = "caption"} 
+section_five_graph ()
+```
+
+Section 5: <variable comparison that reveals potential patterns of inequality>
+Section 3 and section 4 show prison population trends by time. But, notice that these charts do not show patterns of inequality. They do not, for example, answer these kinds of questions:
+
+Are some races (or genders) disproportionally represented in jail in some areas of the country. Note the importance of state population(s).
+Do some kinds of counties seem to imprison more people than other kinds of counties? (Note the importance of county population and perhaps other features of a county.)
+In this section, your goal is to produce a chart that reveals a potential inequality. This chart should show how two different continuous variables are related to one another. Think carefully about what such a comparison means, and what you want to communicate to your user. Your first step should be to find potential trends in the dataset.
+
+For the report, include the following in this section: 
+
+Chart. Present the chart.
+Chart caption. Include a caption that names and briefly describes the chart.
+Summary paragraph. Include the following: 
+A specific question(s).
+A succinct answer to the question, referring to evidence in the chart.
+A brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart.
+Structuring your code. As in the previous sections, you should write two functions (or more, if useful), one for data wrangling and one for plotting.
+
 
 _All the very best with your work!_
 
