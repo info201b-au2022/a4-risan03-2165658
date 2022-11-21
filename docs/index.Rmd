@@ -47,11 +47,23 @@ First, I have extracted the population by race who are jailed and the total mean
 
 Here are the result:
   
+  
 What is the average value of the jailed population of black or African American from age 15 to 64?
 What are the average value of the jailed population of white from age 15 to 64?
 What are the average value of the jailed population of latino from age 15 to 64?
 
+``` {r Graph 1, echo = FLASE, fig.cap = "caption} 
+plot_jail_pop_for_us()
+```
 
+
+``` {r Graph 2, echo = FLASE, fig.cap = "caption} 
+plot_jail_pop_by_states()
+```
+
+``` {r Graph 3, echo = FLASE, fig.cap = "caption} 
+plot_jail_pop_by_states()
+```
 [TODO]
 
 [TODO ... other sections ... See Canvas for details]
