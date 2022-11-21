@@ -25,14 +25,48 @@ library("ggplot2")
 
 ## Section 2  ---- 
 #----------------------------------------------------------------------------#
-# Your functions and variables might go here ... <todo: update comment>
+fname_sub <- fname %>%
+  select(year, state, aapi_jail_pop, black_jail_pop, latinx_jail_pop, 
+         native_jail_pop, white_jail_pop, total_jail_pop, aapi_pop_15to64, 
+         black_pop_15to64, latinx_pop_15to64, native_pop_15to64, white_pop_15to64)
+
+fname_sub_2018 <- fname_sub %>%
+  filter(year == 2018) %>%
+  summarise(mean_aapi_jail_pop = mean(aapi_jail_pop, na.rm = TRUE),
+            mean_black_jail_pop = mean(black_jail_pop, na.rm = TRUE),
+            mean_latinx_jail_pop = mean(latinx_jail_pop, na.rm = TRUE),
+            mean_native_jail_pop = mean(native_jail_pop, na.rm = TRUE),
+            mean_white_jail_pop = mean(white_jail_pop, na.rm = TRUE),
+            mean_aapi_pop_15to64 = mean(aapi_pop_15to64, na.rm = TRUE),
+            mean_black_pop_15to64 = mean(black_pop_15to64, na.rm = TRUE),
+            mean_latinx_pop_15to64 = mean(latinx_pop_15to64, na.rm = TRUE),
+            mean_native_pop_15to64 = mean(native_pop_15to64, na.rm = TRUE),
+            mean_white_pop_15to64 = mean(white_pop_15to64, na.rm = TRUE),
+                  )
+
+#ratio of mean population to jail in 2018 (Race includes Asian American, Native American,
+#Black, White, and Latinx)
+
+ratio_pop_to_jail_2018 <- fname_sub_2018 %>%
+  summarise(ratio_aapi = mean_aapi_jail_pop/mean_aapi_pop_15to64,
+            ratio_black = mean_black_jail_pop/ mean_black_pop_15to64,
+            ratio_latinx = mean_latinx_jail_pop/mean_aapi_pop_15to64,
+            ratio_native = mean_native_jail_pop/mean_native_pop_15to64,
+            ratio_white = mean_white_jail_pop/ mean_white_pop_15to64
+            )
+
+overall$ratio_aapi
+overall$ratio_black
+overall$ratio_latinx
+overall$ratio_native
 
 #What is the average value of the jailed population of black or African American from age 15 to 64?
 #What are the average value of the jailed population of white from age 15 to 64?
-#What are the average value of the jailed population of latino from age 15 to 64?
+#What are the average value of the jailed population of latinx from age 15 to 64?
 
 #Section 2: Data summary 
-#Write a paragraph of summary information, citing at least three values calculated from the data.  Your goal is to summarize some of the key variables that you are interested in. Report the values and explain why they are important; that is, how do the variables and value help you to understand patterns of inequality in the prison system.
+#Write a paragraph of summary information, citing at least three values calculated from the data.  Your goal is to summarize some of the key variables that you are interested in. 
+#Report the values and explain why they are important; that is, how do the variables and value help you to understand patterns of inequality in the prison system.
 
 #This values will likely be calculated using your DPLYR skills. You might answer such questions as: 
   
