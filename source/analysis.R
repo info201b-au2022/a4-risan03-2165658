@@ -190,32 +190,47 @@ blank_theme <- theme_bw() +
 
 get_black_jail_map <- fname %>%
   select(state, year, black_jail_pop, total_pop)%>%
-  filter(year == 2018) %>%
+  filter(year == 2018) %>% # keep only 2018 data
   group_by(state) %>%
-  mutate(black_ratio = black_jail_pop / total_pop)
+  mutate(black_ratio = (black_jail_pop / total_pop))
          
 get_black_jail_map$state <- state.name[match(get_black_jail_map$state, state.abb)]
 
-state_shape <- map_data("state") %>%
-  rename(state = region) %>%
-  left_join(get_black_jail_map, by ="state")
+# Join eviction data to the U.S. shapefile
+state_shape <- map_data("state") %>% # load state shapefile
+  rename(state = region) %>% # rename for joining
+  left_join(get_black_jail_map, by="state") # join eviction data
 
 map_one <- ggplot(state_shape) +
-  geom_polygon(mapping = aes(x = long, y = lat, group = group, 
-                             fill = black_ratio, size = .1, alpha = .3)
-               ) +
-  scale_fill_gradient2(
-    "# of Black jailed population",
-    low = "white",
-    mid = "yellow",
-    high = "red"
+  geom_polygon(
+    mapping = aes(x = long, y = lat, group = group, fill = black_ratio),
+    color = "white", # show state outlines
+    size = .1        # thinly stroked
   ) +
-  labs(title="Jailed Black Population in the United States, 2018") +
-  theme(plot.margin = margin(.3, 0, 0, 0, "cm")) +
-  blank_theme
+  coord_map() + # use a map-based coordinate system
+  scale_fill_continuous(low = "#132B43", high = "Red") +
+  labs(fill = "Jailed Black Population in the United States, 2018") +
+  blank_theme # variable containing map styles (defined in next code snippet)
+
 
 ---
   
+  # Load evictions data
+  evictions <- read.csv("data/states.csv", stringsAsFactors = FALSE) %>%
+  filter(year == 2016) %>% # keep only 2016 data
+  mutate(state = tolower(state)) # replace with lowercase for joining
+
+# Draw the map setting the `fill` of each state using its eviction rate
+ggplot(state_shape) +
+  geom_polygon(
+    mapping = aes(x = long, y = lat, group = group, fill = eviction.rate),
+    color = "white", # show state outlines
+    size = .1        # thinly stroked
+  ) +
+  coord_map() + # use a map-based coordinate system
+  scale_fill_continuous(low = "#132B43", high = "Red") +
+  labs(fill = "Eviction Rate") +
+  blank_theme # variable containing map styles (defined in next code snippet)
 
 Section 6: <a map shows potential patterns of inequality that vary geographically>
   In this section, your goal is to produce a map that reveals a potential inequality.
