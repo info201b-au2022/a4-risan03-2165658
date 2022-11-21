@@ -55,10 +55,13 @@ ratio_pop_to_jail_2018 <- fname_sub_2018 %>%
             ratio_white = mean_white_jail_pop/ mean_white_pop_15to64
             )
 
-overall$ratio_aapi
-overall$ratio_black
-overall$ratio_latinx
-overall$ratio_native
+overall <- list()
+
+overall$ratio_aapi_2018 <- pull(ratio_pop_to_jail_2018, ratio_aapi)
+overall$ratio_black_2018 <- pull(ratio_pop_to_jail_2018, ratio_black)
+overall$ratio_latinx_2018 <- pull(ratio_pop_to_jail_2018, ratio_latinx)
+overall$ratio_native_2018 <- pull(ratio_pop_to_jail_2018, ratio_native)
+overall$ratio_white_2018 <- pull(ratio_pop_to_jail_2018, ratio_white)
 
 #What is the average value of the jailed population of black or African American from age 15 to 64?
 #What are the average value of the jailed population of white from age 15 to 64?
