@@ -43,16 +43,16 @@ White : `r overall$ratio_white_2018`
 in year 2018. Then, found the ratio by dividing mean jail population of the certain race to the mean population from 15 to 64) 
 
 ##Section 3 : Growth of the U.S. Prison Population
-``` {r Graph 1, echo = FLASE, fig.cap = "caption"} 
+``` {r Graph 1, echo = FALSE, fig.cap = "caption"} 
 plot_jail_pop_for_us()
 ```
 
 ##Section 4 : Jail Population by States
-``` {r Graph 2, echo = FLASE, fig.cap = "caption"} 
+``` {r Graph 2, echo = FALSE, fig.cap = "caption"} 
 plot_jail_pop_by_states()
 ```
 ##Section 5: Variable Comparison
-``` {r Graph e, echo = FLASE, fig.cap = "caption"} 
+``` {r Graph e, echo = FALSE, fig.cap = "caption"} 
 section_five_graph()
 ```
 
@@ -70,8 +70,8 @@ population over time. We will be answering: Are the jailed population of the rac
 Does help to support the claim of inequality, or does it not? 
 --
 ##Section 6: Potential patterns of inequality that vary geographically
-``` {r Graph 4, echo = FLASE, fig.cap = "caption"} 
-section_five_graph ()
+``` {r Graph 4, echo = FALSE, fig.cap = "caption"} 
+map_one()
 ```
 
 Section 6: <a map shows potential patterns of inequality that vary geographically>
