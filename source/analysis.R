@@ -1,6 +1,6 @@
 fname <- read.csv(file = "~/Documents/info201/data/incarceration_trends.csv")
 
-library("tidyverse")
+Viewlibrary("tidyverse")
 library("dplyr")
 library("ggplot2")
 
@@ -71,7 +71,46 @@ plot_jail_pop_for_us <- function(){
 #----------------------------------------------------------------------------#
 # Growth of Prison Population by State 
 # Your functions might go here ... <todo:  update comment>
-# See Canvas
+
+get_jail_pop_by_states <- function(states){
+  jail_pop_state <- fname %>%
+    select(total_jail_pop, year)
+  return(jail_pop_state)
+}
+
+
+plot_jail_pop_by_states <- function(state){
+  df_two <- get_jail_pop_by_states(states)
+  graph_by_states <- ggplot(data = fname) + 
+    geom_line(
+      mapping = aes(x = year, y = total_jail_pop)) + 
+    ggtitle( "U.S. prison population from 1970 to 2018 in Washington, California, and Oregon") +  
+    labs(y = "Total Jail Population by..", x = "Year")
+  return(graph_by_states)   
+}
+
+
+----
+  
+  selected_states <-data.frame(
+    state = c("WA", "OR", "CA")
+  )
+
+  
+  This data wrangling function should return a data frame that is suitable for visualization. The parameter states should be a vector of states.
+plot_jail_pop_by_states(states)
+
+: This plotting function should return the chart. The parameter states should be a vector of states. This function should call the data wrangling function.
+If plot_jail_pop_by_states(c("WA", "OR", "CA")) is called it will produce a line chart with three lines, one for each of the states.  Show more than three states but fewer than 10 states.  
+
+For the report, include the following in this section: 
+  
+Chart caption. Include a caption that names and briefly describes the chart.
+Summary paragraph. Include a brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart. Explain the reason for the states that you show.
+
+# This is  a line chart that shows the growth of the U.S. prison population from 1970 to 2018 in Washington, California, and Oregon. 
+#I chose these states as they are west coast where I live in. We can see how ....
+
 #----------------------------------------------------------------------------#
 
 ## Section 5  ---- 
