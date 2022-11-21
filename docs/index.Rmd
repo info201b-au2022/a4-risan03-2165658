@@ -1,5 +1,5 @@
 ---
-title: "Fight for Human Dignity"
+title: "Revealing the Inequality (using incarceration data)"
 author: "Risa Nabari"
 date: '2022-11-19'
 output: html_document
@@ -94,6 +94,18 @@ Does help to support the claim of inequality, or does it not?
 section_five_graph ()
 ```
 
+Section 6: <a map shows potential patterns of inequality that vary geographically>
+  In this section, your goal is to produce a map that reveals a potential inequality.
+Specifically, the map should show show show how a variable is distributed geographically. 
+Again, think carefully about how a "geographic comparison" (e.g., counties in a state, counties in division, or counties in across regions) might reveal an inequality. 
+Your first step should be to find potential trends in the dataset.  Recommendation: See reading on maps and (1)  Use a map based coordinate system to set the aspect ratio of your map; 
+and (2) Use a minimalist theme for the map (see reading). 
+
+Structuring your code. As in the previous sections, you should write two functions (or more, if useful), one for data wrangling and one for plotting.
+
+
+
+--
 Section 5: <variable comparison that reveals potential patterns of inequality>
 Section 3 and section 4 show prison population trends by time. But, notice that these charts do not show patterns of inequality. They do not, for example, answer these kinds of questions:
 
