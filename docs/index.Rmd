@@ -6,32 +6,12 @@ output: html_document
 ---
 
 ```{r echo=FALSE, eval=TRUE, message=FALSE}
-source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
 
 ## Abstract 
 This report uses the incarceration data set, and the key goal of this data set is to help understand the inequalities associated with people who have been incarcerated and who are in jail, specifically in the US society. We will be analyzing the number of jailed population of people with different colors as well as the growth of the U.S. prison population and state. 
 
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
 
 ## Introduction 
 
@@ -54,10 +34,10 @@ First, I have extracted the population by race who are jailed and the total mean
 Here are the result:
 
 American Asian Pacific Islander : `r overall$ratio_aapi_2018`
-Black : `overall$ratio_black_2018`
-Latinx :`overall$ratio_latinx_2018`
-Native Americans : `overall$ratio_native_2018`
-White : `overall$ratio_white_2018`
+Black : `r overall$ratio_black_2018`
+Latinx :`r overall$ratio_latinx_2018`
+Native Americans : `r overall$ratio_native_2018`
+White : `r overall$ratio_white_2018`
 
 (To get this result, I have selected the relevant columns, then found the mean jail population by filterting 
 in year 2018. Then, found the ratio by dividing mean jail population of the certain race to the mean population from 15 to 64) 
@@ -89,7 +69,7 @@ In section 5, we will be looking at the trend of the ration of jailed
 population over time. We will be answering: Are the jailed population of the races increaseing or decreasing?
 Does help to support the claim of inequality, or does it not? 
 --
-##Section 6: 
+##Section 6: Potential patterns of inequality that vary geographically
 ``` {r Graph 4, echo = FLASE, fig.cap = "caption"} 
 section_five_graph ()
 ```
@@ -122,7 +102,3 @@ A specific question(s).
 A succinct answer to the question, referring to evidence in the chart.
 A brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart.
 Structuring your code. As in the previous sections, you should write two functions (or more, if useful), one for data wrangling and one for plotting.
-
-
-_All the very best with your work!_
-
