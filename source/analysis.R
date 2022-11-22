@@ -154,8 +154,6 @@ sub_fname_five <- fname %>%
   group_by(state) %>%
   filter(year == 2018)
 
-#sub_fname_five[is.na(sub_fname_five] <- 0 
-
 section_five_graph <- function(state){
   ggplot(data = sub_fname_five) +
   geom_point(
@@ -183,25 +181,32 @@ blank_theme <- theme_bw() +
 get_black_jail_map <- fname %>%
   select(state, year, black_jail_pop, total_pop) %>%
   filter(year == 2018) %>% # keep only 2018 data
+  mutate(black_ratio = black_jail_pop / total_pop) %>%
   group_by(state) %>%
-  mutate(black_ratio = (black_jail_pop / total_pop))
-         
-get_black_jail_map$state <- state.name[match(get_black_jail_map$state, state.abb)]
+  summarize(black_ratio = sum(black_ratio)) %>% 
+  drop_na(state)
+ #mutate(state = tolower(state))
+
+
+#get_black_jail_map$state <- state.name[match(get_black_jail_map$state, state.abb)]
 
 # Join eviction data to the U.S. shapefile
 state_shape <- map_data("state") %>% # load state shapefile
   rename(state = region) %>% # rename for joining
-  left_join(get_black_jail_map, by = "state") # join eviction data
+  left_join(get_black_jail_map, by = "state") %>% group_by(state)
 
 map_one <- ggplot(state_shape) +
-  geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = black_ratio),
+  geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = get_black_jail_map$black_ratio),
     color = "white", # show state outlines
-    size = .1        # thinly stroked
+    linewidth = .1        # thinly stroked
   ) +
   coord_map() + # use a map-based coordinate system
-  scale_fill_continuous(low = "#132B43", high = "Red") +
+  scale_fill_continuous(limits = c(0, max(get_black_jail_map$black_ratio)), 
+                        na.value = "White", low = "Red", high = "Black") +
   labs(fill = "Jailed Black Population in the United States, 2018") +
   blank_theme # variable containing map styles (defined in next code snippet)
+map_one
+
   
 #Section 6: <a map shows potential patterns of inequality that vary geographically>
  # In this section, your goal is to produce a map that reveals a potential inequality.
