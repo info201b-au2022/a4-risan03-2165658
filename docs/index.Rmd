@@ -51,26 +51,18 @@ Overall, we can say that the jail population in the U.S. has increased drastical
 ``` {r Graph 2, echo = FALSE, fig.cap = "Growth of prison population in Washington, California, and Oregon over time (from 1970 to 2018)."} 
 plot1
 ```
-**Summary**: In all three states, we can see that the prison population has increased over time. Oregon has the least number of prison population and has a slow steady slope. Washington also has a slow steady slope by slightly higher than the prison population of Oregon. On the other hand, California has a high jail population as seen in the graph. From 1970 to 1980, it was steady (although higher than the other two states) but from 1980 to 1990, it had a very steep slope which increased from around 28000 to 70000. Then, the numbers increased and decreased until 2020. But overall, the total jail population has increased. I have chosen these states as I am currently living in Washington so I was curious on what the pattern was like. In addition, I wanted to compare the difference in the states located on the west coast to see if it would give a similar result. 
+**Summary**: In all three states, we can see that the prison population has increased over time. Oregon has the least number of prison population and has a slow steady slope. Washington also has a slow steady slope by slightly higher than the prison population of Oregon. On the other hand, California has a high jail population as seen in the graph. From 1970 to 1980, it was steady (although higher than the other two states) but from 1980 to 1990, it had a very steep slope which increased from around 28000 to 70000. Then, the numbers increased and decreased until 2020. But overall, the total jail population has increased. This could be because California is densely populated which can cause disparity between the community. I have chosen these states as I am currently living in Washington so I was curious on what the pattern was like. In addition, I wanted to compare the difference in the states located on the west coast to see if it would give a similar result. 
 
 ## Variable Comparison
-``` {r Graph e, echo = FALSE, fig.cap = "caption"} 
+
+Here, we will be having a variable comparison that reveals potential patterns of inequality. In data summary, we have revealed the ratio of the mean jailed population to the whole population of different races. Now, is there a difference between women and men? Which gender may be potentially 
+more vulnerable to getting incarcerated? 
+``` {r Graph e, echo = FALSE, fig.cap = "Variable comparison of jailed population by gender (men and women) in 2018 by states"} 
 section_five_graph()
 ```
 
-Here, we will be having a variable comparison that reveals potential patterns of inequality. 
-In section 2, we have revealed the ratio of the mean jailed population to the population of 
-various race specific to 2018. We have learned that...
+**Summary**: Shown in the graph above, we can see that men has a higher number of jailed population compared to women. We can see this easily by the plots shown. For example, the value on the right corner has around 2200 jailed women and the mail population has around 15000, which is a big difference. This tells that overall, more men is in jail and this could potentially relate to inequality, where men are over 8 times more likely than women to be incarcerated in prison. Throughout this report, we have known that people with color and who are men has a higher population to be incarcerated in prison. 
 
-Now, is there a difference between women and men? Which gender may be potentially 
-more vulnerable to getting incarceranated in certain states?
-
-
-
-In section 5, we will be looking at the trend of the ration of jailed 
-population over time. We will be answering: Are the jailed population of the races increaseing or decreasing?
-Does help to support the claim of inequality, or does it not? 
---
 ## Potential patterns of inequality that vary geographically
 ``` {r Graph 4, echo = FALSE, fig.cap = "Presents the jailed black population in the United States (2018) by states. The more darker the color is, the more jailed black population in that state."} 
 map_one
