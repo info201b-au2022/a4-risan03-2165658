@@ -72,8 +72,8 @@ population over time. We will be answering: Are the jailed population of the rac
 Does help to support the claim of inequality, or does it not? 
 --
 ## Potential patterns of inequality that vary geographically
-``` {r Graph 4, echo = FALSE, fig.cap = "caption"} 
-#map_one
+``` {r Graph 4, echo = FALSE, fig.cap = "Presents the jailed black population in the United States (2018) by states. The more darker the color is, the more jailed black population in that state."} 
+map_one
 ```
 
 Section 6: <a map shows potential patterns of inequality that vary geographically>
