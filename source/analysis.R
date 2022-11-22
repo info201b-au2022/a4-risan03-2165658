@@ -167,7 +167,7 @@ section_five_graph <- function(state){
   ggplot(data = sub_fname_five) +
   geom_point(
     mapping = aes(x = female_adult_jail_pop, y = male_adult_jail_pop)) + 
-  ggtitle( "Variable Comparison of Jailed Population by Gender (in 2018 by States)") +  
+  ggtitle( "Variable Comparison of Jailed Population by Gender by States (2018)") +  
   labs(y = "Male Jailed Population", x = "Women Jailed Population")
 }
 
