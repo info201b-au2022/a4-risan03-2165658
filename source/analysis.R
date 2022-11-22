@@ -182,27 +182,26 @@ get_black_jail_map <- fname %>%
   select(state, year, black_jail_pop, total_pop) %>%
   filter(year == 2018) %>% # keep only 2018 data
   mutate(black_ratio = black_jail_pop / total_pop) %>%
-  group_by(state) %>%
-  summarize(black_ratio = sum(black_ratio)) %>% 
-  drop_na(state)
- #mutate(state = tolower(state))
+  mutate(black_ratio = black_ratio * 100)
 
-
-#get_black_jail_map$state <- state.name[match(get_black_jail_map$state, state.abb)]
+get_black_jail_map$state <- tolower(state.name[match(get_black_jail_map$state, state.abb)])
 
 # Join eviction data to the U.S. shapefile
 state_shape <- map_data("state") %>% # load state shapefile
   rename(state = region) %>% # rename for joining
-  left_join(get_black_jail_map, by = "state") %>% group_by(state)
+  left_join(get_black_jail_map)
+
+# use_map_data <- left_join(get_black_jail_map, state_shape, by = "state")
 
 map_one <- ggplot(state_shape) +
-  geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = get_black_jail_map$black_ratio),
-    color = "white", # show state outlines
-    linewidth = .1        # thinly stroked
-  ) +
+  geom_polygon(
+    mapping = aes(x = long, y = lat, group = group, fill = black_ratio),
+    color = "black", # show state outlines
+    size = 0.1 # thinly stroked
+    ) +
   coord_map() + # use a map-based coordinate system
-  scale_fill_continuous(limits = c(0, max(get_black_jail_map$black_ratio)), 
-                        na.value = "White", low = "Red", high = "Black") +
+  scale_fill_continuous(limits = c(0, max(0.5)), 
+                        na.value = "light gray", low = "white", high = "Blue") +
   labs(fill = "Jailed Black Population in the United States, 2018") +
   blank_theme # variable containing map styles (defined in next code snippet)
 map_one
