@@ -108,27 +108,36 @@ plot_jail_pop_for_us <- function(){
 # Growth of Prison Population by State 
 # Your functions might go here ... <todo:  update comment>
 
+fname <- replace(fname, is.na(fname),0)
+states = c("WA", "OR", "CA")
 get_jail_pop_by_states <- function(states){
   jail_pop_state <- fname %>%
-    select(total_jail_pop, year)
-  return(jail_pop_state)
+  filter(state %in% states) %>%
+    select(total_jail_pop, year, county_name, state) %>%
+    group_by(state, year) %>%
+    summarise(
+      state,
+      year,
+      pop = sum(total_jail_pop)
+    )
+  return(unique(jail_pop_state))
 }
 
 
-plot_jail_pop_by_states <- function(state){
+plot_jail_pop_by_states <- function(jail_pop_state){
   df_two <- get_jail_pop_by_states(states)
-  graph_by_states <- ggplot(data = fname) + 
-    geom_line(
-      mapping = aes(x = year, y = total_jail_pop)) + 
-    ggtitle( "U.S. prison population from 1970 to 2018 in Washington, California, and Oregon") +  
-    labs(y = "Total Jail Population by..", x = "Year")
+  graph_by_states <- ggplot(
+    data = jail_pop_state,
+    mapping = aes(x = year, y = pop, group = state)) + 
+    geom_line(aes(color = state)) +
+    ggtitle( "U.S. prison population in WA, CA, OR (1970-2018)") +  
+    labs(y = "Total Jail Population", x = "Year")
   return(graph_by_states)   
 }
 
-
- # selected_states <-data.frame(
-#    state = c("WA", "OR", "CA")
-#  )
+testdf <- get_jail_pop_by_states(states)
+plot1<- plot_jail_pop_by_states(testdf)
+plot1
 
   
  # This data wrangling function should return a data frame that is suitable for visualization. The parameter states should be a vector of states.
@@ -161,6 +170,7 @@ section_five_graph <- function(state){
   ggtitle( "Variable Comparison of Jailed Population by Gender (in 2018 by States)") +  
   labs(y = "Male Jailed Population", x = "Women Jailed Population")
 }
+
 #----------------------------------------------------------------------------#
 
 ## Section 6  ---- 
@@ -205,7 +215,6 @@ map_one <- ggplot(state_shape) +
                         na.value = "White", low = "Red", high = "Black") +
   labs(fill = "Jailed Black Population in the United States, 2018") +
   blank_theme # variable containing map styles (defined in next code snippet)
-map_one
 
   
 #Section 6: <a map shows potential patterns of inequality that vary geographically>
