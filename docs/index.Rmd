@@ -15,43 +15,45 @@ This report uses the incarceration data set, and the key goal of this data set i
 
 ## Introduction 
 
-Understanding the inequalities associated with people who have been incarcerated and who are in jail, specifically in the US society is very crucial in order to eventually fight for human dignity, advocate for immigrants, invest in the communities, and to end mass incarceration. Mass incarceration robs people of dignity and tears at the fabric of communities. The biggest direct stakeholder includes those who are directly affected by this (mostly the people of color sent to jail and their family). The indirect stakeholders includes the researchers, organizers, and the government (leader) who analyzes the data and to create evidence-based solutions that restore communities in order to end criminalization of people of color, immigrants, and people experiencing poverty. If we are able to analyze the data and draw important conclusions and if we are able to work out the solutions, we could create a new paradigm for public safety and racial justice. Thus in this report, we will be analyzing the number of jailed population of people with different colors as well as the growth of the U.S. prison population and state. 
-
-********“Black men comprise about 13% of the population, but 35% of the incarcerated”?**************************************
-
+Understanding the inequalities associated with people who have been incarcerated and who are in jail, specifically in the US society is very crucial in order to eventually fight for human dignity, advocate for immigrants, invest in the communities, and to end mass incarceration. Mass incarceration robs people of dignity and tears at the fabric of communities. The biggest direct stakeholder includes those who are directly affected by this (mostly the people of color sent to jail and their family). The indirect stakeholders include the researchers, organizers, and the government (leader) who analyzes the data and to create evidence-based solutions that restore communities in order to end criminalization of people of color, immigrants, and people experiencing poverty. If we are able to analyze the data and draw important conclusions and if we are able to work out the solutions, we could create a new paradigm for public safety and racial justice. Thus in this report, we will be analyzing the number of jailed people with different colors, gender, as well as the growth of the U.S. prison population and state. 
 
 ## Data Summary 
 In order to look at the inequalities associated with people who have been incarcerated and who are in jail, we will be looking at the jailed population by race and compare it with the population of each race to find the ratio. This will allow us to compare between each race and discuss if we are able to see a evidence of inequality. I have used the data from 2018 as having the most recent year would be the most relevant. 
-The answers I will be answers is :
-What is the average value of the jailed population of Asian Americanage 15 to 64?
-What is the average value of the jailed population of Black from age 15 to 64?
-What is the average value of the jailed population of African American from age 15 to 64?
-What are the average value of the jailed population of White from age 15 to 64?
-What are the average value of the jailed population of Latinx from age 15 to 64?
-
-First, I have extracted the population by race who are jailed and the total mean population.
+The answers I will be answers is :  What is the average value of the Asian American jailed population by the mean population of Asian American from age 15 to 64 ? What is the average value of the Black jailed population by the mean population of Black from age 15 to 64?
+What is the average value of the African American jailed population by the mean population of African American from age 15 to 64? What are the average value of the White jailed population by the mean population of White from age 15 to 64? What are the average value of the Latinx jailed population by the mean population of Latinx from age 15 to 64?
 
 Here are the result:
 
-American Asian Pacific Islander : `r overall$ratio_aapi_2018`
-Black : `r overall$ratio_black_2018`
-Latinx :`r overall$ratio_latinx_2018`
-Native Americans : `r overall$ratio_native_2018`
-White : `r overall$ratio_white_2018`
+#### **American Asian Pacific Islander : `r overall$ratio_aapi_2018`**
 
-(To get this result, I have selected the relevant columns, then found the mean jail population by filterting 
-in year 2018. Then, found the ratio by dividing mean jail population of the certain race to the mean population from 15 to 64) 
+#### **Black : `r overall$ratio_black_2018`**
 
-##Section 3 : Growth of the U.S. Prison Population
-``` {r Graph 1, echo = FALSE, fig.cap = "caption"} 
+#### **Latinx :`r overall$ratio_latinx_2018`**
+
+#### **Native Americans : `r overall$ratio_native_2018`**
+
+#### **White : `r overall$ratio_white_2018`**
+
+_To get this result, I have selected the relevant columns, then found the mean jail population by filtering in year 2018. Then, found the ratio by dividing mean jail population of the certain race to the mean population from 15 to 64_
+
+We can see that the ratio of black population (and race with color) is considerably higher than the white population. 
+
+## Growth of the U.S. Prison Population
+``` {r Graph 1, echo = FALSE, fig.cap = "This graph shows the growth of U.S. prison population from 1970-2018"} 
 plot_jail_pop_for_us()
 ```
+Summary paragraph. A brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart.
 
-##Section 4 : Jail Population by States
-``` {r Graph 2, echo = FALSE, fig.cap = "caption"} 
-plot_jail_pop_by_states()
+**Summary**: What pattern can we see in the growth of jailed population in U.S. over time?
+Overall, we can say that the jail population in the U.S. has increased drastically. From 1970 to 1980, it was pretty consistent where the value was around 180,000. However from 1980 to 2010, it has increased steadily with a steep slope reaching near to around 800,000 in 2008. From there, it has decreased slightly but compared to back in 1970, it has still been high. 
+
+## Jail Population by States
+``` {r Graph 2, echo = FALSE, fig.cap = "Growth of prison population in Washington, California, and Oregon over time (from 1970 to 2018)."} 
+plot1
 ```
-##Section 5: Variable Comparison
+**Summary**: In all three states, we can see that the prison population has increased over time. Oregon has the least number of prison population and has a slow steady slope. Washington also has a slow steady slope by slightly higher than the prison population of Oregon. On the other hand, California has a high jail population as seen in the graph. From 1970 to 1980, it was steady (although higher than the other two states) but from 1980 to 1990, it had a very steep slope which increased from around 28000 to 70000. Then, the numbers increased and decreased until 2020. But overall, the total jail population has increased. I have chosen these states as I am currently living in Washington so I was curious on what the pattern was like. In addition, I wanted to compare the difference in the states located on the west coast to see if it would give a similar result. 
+
+## Variable Comparison
 ``` {r Graph e, echo = FALSE, fig.cap = "caption"} 
 section_five_graph()
 ```
@@ -69,9 +71,9 @@ In section 5, we will be looking at the trend of the ration of jailed
 population over time. We will be answering: Are the jailed population of the races increaseing or decreasing?
 Does help to support the claim of inequality, or does it not? 
 --
-##Section 6: Potential patterns of inequality that vary geographically
+## Potential patterns of inequality that vary geographically
 ``` {r Graph 4, echo = FALSE, fig.cap = "caption"} 
-map_one()
+#map_one
 ```
 
 Section 6: <a map shows potential patterns of inequality that vary geographically>
