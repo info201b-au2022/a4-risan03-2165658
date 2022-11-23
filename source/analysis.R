@@ -4,32 +4,15 @@ library("tidyverse")
 library("dplyr")
 library("ggplot2")
 
-
-# The functions might be useful for A4
-# source("../source/a4-helpers.R")
-
-## Test queries ----
-#----------------------------------------------------------------------------#
-# Simple queries for basic testing
-#----------------------------------------------------------------------------#
-# Return a simple string
-#test_query1 <- function() {
- # return ("Hello world")
-#}
-
-# Return a vector of numbers
-#test_query2 <- function(num=6) {
- # v <- seq(1:num)
-#  return(v)
-#}
-
 ## Section 2  ---- 
 #----------------------------------------------------------------------------#
+#selecting all the relevant values using select() in order to draw insights, making into a smaller dataset
 fname_sub <- fname %>%
   select(year, state, aapi_jail_pop, black_jail_pop, latinx_jail_pop, 
          native_jail_pop, white_jail_pop, total_jail_pop, aapi_pop_15to64, 
          black_pop_15to64, latinx_pop_15to64, native_pop_15to64, white_pop_15to64)
 
+#filtering data to 2018 and finding mean of the values using mean() in summarise function
 fname_sub_2018 <- fname_sub %>%
   filter(year == 2018) %>%
   summarise(mean_aapi_jail_pop = mean(aapi_jail_pop, na.rm = TRUE),
@@ -44,7 +27,7 @@ fname_sub_2018 <- fname_sub %>%
             mean_white_pop_15to64 = mean(white_pop_15to64, na.rm = TRUE),
                   )
 
-#ratio of mean population to jail in 2018 (Race includes Asian American, Native American,
+#Finding the ratio of mean jail population by the population of the race in 2018 by (Race includes Asian American, Native American,
 #Black, White, and Latinx)
 
 ratio_pop_to_jail_2018 <- fname_sub_2018 %>%
@@ -57,28 +40,12 @@ ratio_pop_to_jail_2018 <- fname_sub_2018 %>%
 
 overall <- list()
 
+#pulling the value of the ratio so that it can be inputed on the index.Rmd
 overall$ratio_aapi_2018 <- pull(ratio_pop_to_jail_2018, ratio_aapi)
 overall$ratio_black_2018 <- pull(ratio_pop_to_jail_2018, ratio_black)
 overall$ratio_latinx_2018 <- pull(ratio_pop_to_jail_2018, ratio_latinx)
 overall$ratio_native_2018 <- pull(ratio_pop_to_jail_2018, ratio_native)
 overall$ratio_white_2018 <- pull(ratio_pop_to_jail_2018, ratio_white)
-
-#What is the average value of the jailed population of black or African American from age 15 to 64?
-#What are the average value of the jailed population of white from age 15 to 64?
-#What are the average value of the jailed population of latinx from age 15 to 64?
-
-#Section 2: Data summary 
-#Write a paragraph of summary information, citing at least three values calculated from the data.  Your goal is to summarize some of the key variables that you are interested in. 
-#Report the values and explain why they are important; that is, how do the variables and value help you to understand patterns of inequality in the prison system.
-
-#This values will likely be calculated using your DPLYR skills. You might answer such questions as: 
-  
- # What is the average value of my variable across all the counties (in a given year)? 
-  #Where is my variable the highest or lowest?  
- # How much has my variable change over the last N years?
-  #Requirements 
-#[ ] Complete: At least three values are included 
-#[ ] Complete: Values clarify chosen variables related to patterns of inequality 
 #----------------------------------------------------------------------------#
 
 ## Section 3  ---- 
@@ -105,14 +72,16 @@ plot_jail_pop_for_us <- function(){
 
 ## Section 4  ---- 
 #----------------------------------------------------------------------------#
-# Growth of Prison Population by State 
-# Your functions might go here ... <todo:  update comment>
 
+#Function for data wrangling on the growth of prison population by state
 fname <- replace(fname, is.na(fname),0)
+# choses on these 3 states (Washington, Oregon, California) out of all the other states 
 states = c("WA", "OR", "CA")
 get_jail_pop_by_states <- function(states){
   jail_pop_state <- fname %>%
   filter(state %in% states) %>%
+    #selects the relevant values which includes the county name, state, year (1970 to 2018), 
+    # and the total jail population
     select(total_jail_pop, year, county_name, state) %>%
     group_by(state, year) %>%
     summarise(
@@ -123,6 +92,8 @@ get_jail_pop_by_states <- function(states){
   return(unique(jail_pop_state))
 }
 
+#Function for creating a chart  and return the chart. It is a line chart presenting the U.S. prison population in WA,CA,OR
+#where x-axis shows the year and the y-axis represents the jail population
 
 plot_jail_pop_by_states <- function(jail_pop_state){
   df_two <- get_jail_pop_by_states(states)
@@ -138,31 +109,18 @@ plot_jail_pop_by_states <- function(jail_pop_state){
 testdf <- get_jail_pop_by_states(states)
 plot1<- plot_jail_pop_by_states(testdf)
 plot1
-
-  
- # This data wrangling function should return a data frame that is suitable for visualization. The parameter states should be a vector of states.
-#plot_jail_pop_by_states(states)
-
-#: This plotting function should return the chart. The parameter states should be a vector of states. This function should call the data wrangling function.
-#If plot_jail_pop_by_states(c("WA", "OR", "CA")) is called it will produce a line chart with three lines, one for each of the states.  Show more than three states but fewer than 10 states.  
-
-#For the report, include the following in this section: 
-  
-#Chart caption. Include a caption that names and briefly describes the chart.
-#Summary paragraph. Include a brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart. Explain the reason for the states that you show.
-
-# This is  a line chart that shows the growth of the U.S. prison population from 1970 to 2018 in Washington, California, and Oregon. 
-#I chose these states as they are west coast where I live in. We can see how ....
-
 #----------------------------------------------------------------------------#
 
 ## Section 5  ---- 
 #----------------------------------------------------------------------------#
+#Function for data wrangling on the variable comparson between women and men on the jailed population
 sub_fname_five <- fname %>%
   select(year, state, female_adult_jail_pop, male_adult_jail_pop) %>%
   group_by(state) %>%
   filter(year == 2018)
 
+#Function for creating a chart  and return the chart. It is a point chart (scatter plot) 
+#which takes in(calls) the data wrangling function above
 section_five_graph <- function(state){
   ggplot(data = sub_fname_five) +
   geom_point(
@@ -187,22 +145,25 @@ blank_theme <- theme_bw() +
     panel.grid.minor = element_blank(), # remove minor grid lines
     panel.border = element_blank()      # remove border around plot
   )
-
+#Function for data wrangling which selects the relevant value (state, year, black jailed population, and total population)
+#and which only uses the data from 2018 (through filtering), and find the ratio of black jail population to the total population
 get_black_jail_map <- fname %>%
   select(state, year, black_jail_pop, total_pop) %>%
   filter(year == 2018) %>% # keep only 2018 data
   mutate(black_ratio = black_jail_pop / total_pop) %>%
+  #Multiplied it by 100 to show the ratio in numbers that are easier to understand for the map rendering (as number is very small)
   mutate(black_ratio = black_ratio * 100)
 
+# "tolower" fixes every character in the state name string to be lowercase to match the state_map data set
 get_black_jail_map$state <- tolower(state.name[match(get_black_jail_map$state, state.abb)])
 
-# Join eviction data to the U.S. shapefile
+# Join data to the U.S. shapefile
 state_shape <- map_data("state") %>% # load state shapefile
   rename(state = region) %>% # rename for joining
   left_join(get_black_jail_map)
 
-# use_map_data <- left_join(get_black_jail_map, state_shape, by = "state")
-
+# Function which produce map of the jailed population in the united states (2018). Scale fill continuous
+#changes the color on the map depending on the number of the jailed black population in each state
 map_one <- ggplot(state_shape) +
   geom_polygon(
     mapping = aes(x = long, y = lat, group = group, fill = black_ratio),
@@ -215,10 +176,3 @@ map_one <- ggplot(state_shape) +
   labs(fill = "Jailed Black Population in the United States, 2018") +
   blank_theme # variable containing map styles (defined in next code snippet)
 
-  
-#Section 6: <a map shows potential patterns of inequality that vary geographically>
- # In this section, your goal is to produce a map that reveals a potential inequality.
-#Specifically, the map should show show show how a variable is distributed geographically. 
-#Again, think carefully about how a "geographic comparison" (e.g., counties in a state, counties in division, or counties in across regions) might reveal an inequality. 
-#Your first step should be to find potential trends in the dataset.  Recommendation: See reading on maps and (1)  Use a map based coordinate system to set the aspect ratio of your map; 
-#and (2) Use a minimalist theme for the map (see reading). 
