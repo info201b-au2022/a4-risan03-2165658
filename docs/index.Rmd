@@ -61,7 +61,7 @@ section_five_graph()
 
 **Summary**: Shown in the graph above, we can see that men has a higher number of jailed population compared to women. We can see this easily by the plots shown. For example, the value on the right corner has around 2200 jailed women and the mail population has around 15000, which is a big difference. This tells that overall, more men is in jail and this could potentially relate to inequality, where men are over 8 times more likely than women to be incarcerated in prison. Throughout this report, we have known that people with color and who are men has a higher population to be incarcerated in prison. 
 
-## Map Showing Potential patterns of inequality that vary geographically(in the U.S.)
+## Map Representing Potential Patterns of Inequality that Varies Geographically (in the U.S.)
 ``` {r Graph 4, echo = FALSE, fig.cap = "Figure 4: Presents the jailed black population in the United States (2018) by states which the more darker the color is, the more jailed black population in that state."} 
 map_one
 ```
