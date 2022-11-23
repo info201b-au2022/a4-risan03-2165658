@@ -63,36 +63,10 @@ section_five_graph()
 
 **Summary**: Shown in the graph above, we can see that men has a higher number of jailed population compared to women. We can see this easily by the plots shown. For example, the value on the right corner has around 2200 jailed women and the mail population has around 15000, which is a big difference. This tells that overall, more men is in jail and this could potentially relate to inequality, where men are over 8 times more likely than women to be incarcerated in prison. Throughout this report, we have known that people with color and who are men has a higher population to be incarcerated in prison. 
 
-## Potential patterns of inequality that vary geographically
+## Map Showing Potential patterns of inequality that vary geographically(in the U.S.)
 ``` {r Graph 4, echo = FALSE, fig.cap = "Presents the jailed black population in the United States (2018) by states. The more darker the color is, the more jailed black population in that state."} 
 map_one
 ```
 
-Section 6: <a map shows potential patterns of inequality that vary geographically>
-  In this section, your goal is to produce a map that reveals a potential inequality.
-Specifically, the map should show show show how a variable is distributed geographically. 
-Again, think carefully about how a "geographic comparison" (e.g., counties in a state, counties in division, or counties in across regions) might reveal an inequality. 
-Your first step should be to find potential trends in the dataset.  Recommendation: See reading on maps and (1)  Use a map based coordinate system to set the aspect ratio of your map; 
-and (2) Use a minimalist theme for the map (see reading). 
-
-Structuring your code. As in the previous sections, you should write two functions (or more, if useful), one for data wrangling and one for plotting.
-
-
-
---
-Section 5: <variable comparison that reveals potential patterns of inequality>
-Section 3 and section 4 show prison population trends by time. But, notice that these charts do not show patterns of inequality. They do not, for example, answer these kinds of questions:
-
-Are some races (or genders) disproportionally represented in jail in some areas of the country. Note the importance of state population(s).
-Do some kinds of counties seem to imprison more people than other kinds of counties? (Note the importance of county population and perhaps other features of a county.)
-In this section, your goal is to produce a chart that reveals a potential inequality. This chart should show how two different continuous variables are related to one another. Think carefully about what such a comparison means, and what you want to communicate to your user. Your first step should be to find potential trends in the dataset.
-
-For the report, include the following in this section: 
-
-Chart. Present the chart.
-Chart caption. Include a caption that names and briefly describes the chart.
-Summary paragraph. Include the following: 
-A specific question(s).
-A succinct answer to the question, referring to evidence in the chart.
-A brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart.
-Structuring your code. As in the previous sections, you should write two functions (or more, if useful), one for data wrangling and one for plotting.
+**Summary**: In this section, we will be answering how are jailed black population in the United States distributed? 
+The graph tells us about the distribution of the jailed black population by states. I have chosen 2018 as it is the most recent data in the dataset which would be more relevant to draw insights. To answer, we can see that more black population is incarcerated in prison on the right side of the united states and specifically more on the west side ( this includes Geogia, Florida, Alabama, Mississippi, Louisiana, and South Carolina). The highest was in Arkansas with around 0.4.  On the other hand, the northwest side of the map is white which indicates that there are less jailed black population in those areas. Overall, this may suggest inequality that black population may be more vulnerable in the southern (and east) area in the states. 
