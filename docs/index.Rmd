@@ -42,8 +42,6 @@ We can see that the ratio of black population (and race with color) is considera
 ``` {r Graph 1, echo = FALSE, fig.cap = "Figure 1: This graph shows the growth of U.S. prison population from 1970-2018"} 
 plot_jail_pop_for_us()
 ```
-Summary paragraph. A brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart.
-
 **Summary**: What pattern can we see in the growth of jailed population in U.S. over time?
 Overall, we can say that the jail population in the U.S. has increased drastically. From 1970 to 1980, it was pretty consistent where the value was around 180,000. However from 1980 to 2010, it has increased steadily with a steep slope reaching near to around 800,000 in 2008. From there, it has decreased slightly but compared to back in 1970, it has still been high. 
 
